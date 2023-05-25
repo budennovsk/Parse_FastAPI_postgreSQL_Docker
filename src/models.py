@@ -1,8 +1,9 @@
 from sqlalchemy import Column, Integer, Text, Date
 from datetime import date
-from parse.database import Base
+from src.database import Base, engine
 
 
+# создаем модель хранения ответов от сервиса
 class Quiz(Base):
     __tablename__ = 'quiz'
     id = Column(Integer, primary_key=True)
@@ -19,4 +20,8 @@ class Quiz(Base):
         self.created_at = created_at
 
     def __repr__(self):
-        return f'<Quiz {self.question!r}>'
+        return f'<Quiz {self.id!r},{self.question!r},{self.answer!r}>'
+
+
+# создаем таблицы
+Base.metadata.create_all(bind=engine)
