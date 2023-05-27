@@ -1,3 +1,5 @@
+from datetime import datetime
+from typing import List
 
 import requests
 from fastapi import FastAPI, status, Depends
@@ -20,30 +22,31 @@ def get_db():
         db.close()
 
 
-@app.get("/", response_model=CreateQuiz, status_code=status.HTTP_200_OK)
+@app.get("/", response_model=List[CreateQuiz], status_code=status.HTTP_200_OK)
 def get_display(db: Session = Depends(get_db)):
     """ Отображение списка БД кроме последней записи, и первой """
-    row = [
-        'Пустой объект'
-        if db.query(Quiz.id).count() <= 1 else
+    data_db = [
         {
             'id': i.id,
             'id_question': i.id_question,
             'question': i.question,
             'answer': i.answer,
+            'created_at': (datetime.strftime(i.created_at, "%Y-%m-%dT%H:%M:%S.%fZ"))
 
         }
 
         for i in db.query(Quiz).all()[:-1]
     ]
-    for it in row:
-        return CreateQuiz(**it)
+
+    return [CreateQuiz(**row) for row in data_db]
 
 
 @app.post("/", status_code=status.HTTP_201_CREATED)
 def get_create(count: int, db: Session = Depends(get_db)) -> None:
+    """ Добавление данных в БД """
     url = f'https://jservice.io/api/random?count={count}'
     response_data = requests.get(url).json()
+
     for items in response_data:
         while db.query(Quiz).filter(Quiz.id_question == items['id']).first() is not None:
             items = requests.get(

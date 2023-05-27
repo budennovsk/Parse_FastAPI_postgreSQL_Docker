@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, Text, Date
-from datetime import date
+from sqlalchemy import Column, Integer, Text, DateTime
+
 from src.database import Base, engine
 
 
@@ -10,14 +10,7 @@ class Quiz(Base):
     id_question = Column(Integer, unique=True)
     question = Column(Text)
     answer = Column(Text)
-    created_at = Column(Date)
-
-    def __init__(self, id_question: int = None, question: str = None, answer: str = None,
-                 created_at: date = date.today()):
-        self.id_question = id_question
-        self.question = question
-        self.answer = answer
-        self.created_at = created_at
+    created_at = Column(DateTime)
 
     def __repr__(self):
         return f'<Quiz {self.id!r},{self.question!r},{self.answer!r}>'
