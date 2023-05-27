@@ -43,6 +43,15 @@ ___
 ### Result
 
 <img src="https://github.com/budennovsk/Parse_FastAPI_postgreSQL_Docker/assets/97764479/29388752-1ad6-492c-84f8-46ff446b5122" width=70% height=70%>
+____
 
+### Запуск проекта
+
+* Скачать и установить Docker
+* Клонировать репозиторий
+* В корне директории Parse_FastAPI_postgreSQL_Docker создать файл .env и заполнить его.
+* Выполнить docker build -t 'name'
+* Выполнить команду docker compose up -d
+* Перейти по адресу http://127.0.0.1:8000/docs
 
 
