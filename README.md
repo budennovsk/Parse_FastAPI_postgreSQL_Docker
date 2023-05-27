@@ -27,10 +27,10 @@ ___
 
 ___
 
-### Home!
+### Home
 
 
-<img src="[1](https://github.com/budennovsk/Parse_FastAPI_postgreSQL_Docker/assets/97764479/629daea3-3ae3-44e5-ae63-7614a684cd1d" width=70% height=70%>
+<img src="![1](https://github.com/budennovsk/Parse_FastAPI_postgreSQL_Docker/assets/97764479/629daea3-3ae3-44e5-ae63-7614a684cd1d" width=70% height=70%>
 <br>
 
 ### Depatamets
